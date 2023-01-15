@@ -4,10 +4,12 @@ Docker環境で動作するGraphQL APIのサンプルです。
 
 ## 使用技術
 
+- GraphQL
 - TypeScript
 - Node.js
 - NestJS
-- GraphQL
+- TypeORM
+- MySQL
 
 ## 環境構築
 
@@ -38,3 +40,21 @@ make setup
 ```sh
 docker-compose up -d
 ```
+
+## マイグレーション
+
+マイグレーションを実行する際は、Entity（データベースのテーブルをマッピングするクラス）の定義を行った上で、Dockerコンテナで以下のコマンドを実行してください。
+
+```
+npx ts-node ./node_modules/.bin/typeorm migration:generate src/database/migrations/{migrationファイルの名前} -d src/config/ormMigration.ts
+```
+
+マイグレーションファイル作成後に以下のコマンドをDockerコンテナ内（graphql_api_app）で実行すると、テーブルに変更が反映されます。
+
+```
+yarn db:migration
+```
+
+## 参考記事
+- https://docs.nestjs.com/graphql/quick-start
+- https://qiita.com/shinobu_shiva/items/d1df4682a124f45ef046
