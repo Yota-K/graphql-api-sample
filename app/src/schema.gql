@@ -2,7 +2,13 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-input CreatePostInput {
+type Book {
+  createdAt: DateTime!
+  id: ID!
+  updatedAt: DateTime!
+}
+
+input CreateBookInput {
   """Example field (placeholder)"""
   exampleField: Int!
 }
@@ -13,26 +19,17 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Mutation {
-  createPost(createPostInput: CreatePostInput!): Post!
-  removePost(id: Int!): Post!
-  updatePost(updatePostInput: UpdatePostInput!): Post!
-}
-
-type Post {
-  author: String!
-  createdAt: DateTime!
-  id: ID!
-  text: String!
-  title: String!
-  updatedAt: DateTime!
+  createBook(createBookInput: CreateBookInput!): Book!
+  removeBook(id: Int!): Book!
+  updateBook(updateBookInput: UpdateBookInput!): Book!
 }
 
 type Query {
-  post(id: Int!): Post!
-  posts: [Post!]!
+  book(id: Int!): Book!
+  books: [Book!]!
 }
 
-input UpdatePostInput {
+input UpdateBookInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!
