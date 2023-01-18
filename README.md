@@ -43,18 +43,17 @@ docker-compose up -d
 
 ## マイグレーション
 
-マイグレーションを実行する際は、Entity（データベースのテーブルをマッピングするクラス）の定義を行った上で、Dockerコンテナで以下のコマンドを実行してください。
+マイグレーションファイルが既にある場合は、Dockerコンテナの外で以下のコマンドを実行してください。
+
 
 ```
-npx ts-node ./node_modules/.bin/typeorm migration:generate src/database/migrations/{migrationファイルの名前} -d src/config/ormMigration.ts
+make migration:run
 ```
 
-マイグレーションファイル作成後に以下のコマンドをDockerコンテナ内（graphql_api_app）で実行すると、テーブルに変更が反映されます。
+新しいテーブルを作成した場合は、エンティティを追加した後に、Dockerコンテナの外で以下のコマンドを実行するとマイグレーションファイルが実行されます。
+
+**create-booksというマイグレーションファイルを作成**
 
 ```
-yarn db:migration
+make migration-generate name=create-books
 ```
-
-## 参考記事
-- https://docs.nestjs.com/graphql/quick-start
-- https://qiita.com/shinobu_shiva/items/d1df4682a124f45ef046

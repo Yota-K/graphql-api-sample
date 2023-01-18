@@ -5,7 +5,8 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import * as path from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ORM_CONFIG } from './config/ormConfig';
+import { ORM_CONFIG } from './config/ormconfig';
+import { BooksModule } from './books/books.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ORM_CONFIG } from './config/ormConfig';
       // GraphQL playgroundを有効にする
       playground: true,
     }),
+    BooksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
