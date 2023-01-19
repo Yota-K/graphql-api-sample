@@ -3,14 +3,18 @@
 # ------------------------------------------------------
 
 type Book {
+  author: String!
   createdAt: DateTime!
   id: ID!
+  price: Float!
+  title: String!
   updatedAt: DateTime!
 }
 
 input CreateBookInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  author: String!
+  price: Float!
+  title: String!
 }
 
 """
@@ -30,7 +34,8 @@ type Query {
 }
 
 input UpdateBookInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  author: String!
   id: Int!
+  price: Float!
+  title: String!
 }

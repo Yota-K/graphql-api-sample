@@ -14,12 +14,15 @@ export class Book {
   id: number;
 
   @Column({ type: 'varchar', length: 30 })
+  @Field()
   title: string;
 
   @Column({ type: 'varchar', length: 255 })
+  @Field()
   author: string;
 
   @Column({ type: 'int', unsigned: true })
+  @Field()
   price: number;
 
   @CreateDateColumn()
