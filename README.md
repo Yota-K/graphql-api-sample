@@ -16,7 +16,11 @@ Docker環境で動作するGraphQL APIのサンプルです。
 **前提条件**
 この環境を立ち上げるためにはDockerとmakeコマンドが必須です。
 
-### ```cp .sample.env .env```を実行して、envファイルをコピーします
+### envファイルを作成します
+
+```sh
+cp .sample.env .env
+```
 
 dbの名前や接続情報は好きな値を設定してください。
 
@@ -29,13 +33,11 @@ MYSQL_PASSWORD=
 MYSQL_ROOT_PASSWORD=
 ```
 
-### makeコマンドを実行して、Dockerイメージのビルドと、Dockerコンテナ内で```yarn install```を実行します
+### 以下のコマンドを実行後に、Dockerコンテナを立ち上げます
 
 ```sh
 make setup
 ```
-
-### Dockerコンテナを立ち上げます
 
 ```sh
 docker-compose up -d
@@ -46,7 +48,7 @@ docker-compose up -d
 マイグレーションファイルが既にある場合は、Dockerコンテナの外で以下のコマンドを実行してください。
 
 
-```
+```sh
 make migration:run
 ```
 
@@ -56,4 +58,12 @@ make migration:run
 
 ```
 make migration-generate name=create-books
+```
+
+## 初期データの投入
+
+以下のコマンドを実行後に、dbのパスワードを入力すると初期データの投入を行うことができます。
+
+```sh
+make seeding name='sample_db'
 ```

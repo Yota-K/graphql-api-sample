@@ -11,3 +11,7 @@ migration-run:
 
 migration-revert:
 	docker-compose run --rm graphql_api_app sh -c "npm run db:migration:revert"
+
+seeding:
+	docker cp ./sql/seed.sql graphql_api_db:/tmp/seed.sql
+	docker exec -it graphql_api_db /bin/bash -c 'mysql -u root -p ${name} < /tmp/seed.sql'
