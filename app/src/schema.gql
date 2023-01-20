@@ -29,13 +29,13 @@ type Mutation {
 }
 
 type Query {
-  book(id: Int!): Book!
-  books: [Book!]!
+  findAll: [Book!]!
+  findOne(id: Int!): Book!
 }
 
 input UpdateBookInput {
-  author: String!
+  author: String
   id: Int!
-  price: Float!
-  title: String!
+  price: Float
+  title: String
 }

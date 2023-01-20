@@ -1,7 +1,16 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
+import { InputType, Field } from '@nestjs/graphql';
+import { MaxLength } from 'class-validator';
 
 @InputType()
 export class CreateBookInput {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+  @MaxLength(30)
+  @Field()
+  title: string;
+
+  @MaxLength(255)
+  @Field()
+  author: string;
+
+  @Field()
+  price: number;
 }

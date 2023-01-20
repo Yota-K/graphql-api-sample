@@ -11,23 +11,34 @@ export class BooksService {
     @InjectRepository(Book) private bookRepository: Repository<Book>,
   ) {}
 
-  async create(createBookInput: CreateBookInput) {
-    return 'This action adds a new book';
+  async create(createBookInput: CreateBookInput): Promise<Book> {
+    const book = this.bookRepository.create(createBookInput);
+    await this.bookRepository.save(book);
+    return book;
   }
 
-  async findAll() {
+  async findAll(): Promise<Book[]> {
     return this.bookRepository.find();
   }
 
-  async findOne(id: number) {
-    return this.bookRepository.findOne({ where: { id: id } });
+  async findOne(id: number): Promise<Book> {
+    return this.bookRepository.findOneOrFail({ where: { id } });
   }
 
-  update(id: number, updateBookInput: UpdateBookInput) {
-    return `This action updates a #${id} book`;
+  async update(id: number, updateBookInput: UpdateBookInput): Promise<Book> {
+    const book = this.bookRepository.findOneOrFail({ where: { id } });
+
+    if (book) {
+      return this.bookRepository.save(updateBookInput);
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} book`;
+  async remove(id: number): Promise<Book> {
+    const book = this.bookRepository.findOneOrFail({ where: { id } });
+
+    if (book) {
+      await this.bookRepository.delete(id);
+      return book;
+    }
   }
 }
