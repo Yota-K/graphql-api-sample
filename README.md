@@ -33,14 +33,10 @@ MYSQL_PASSWORD=
 MYSQL_ROOT_PASSWORD=
 ```
 
-### 以下のコマンドを実行後に、Dockerコンテナを立ち上げます
+### 以下のコマンドを実行して、Dockerコンテナを立ち上げます
 
 ```sh
 make setup
-```
-
-```sh
-docker-compose up -d
 ```
 
 ## マイグレーション
@@ -56,14 +52,25 @@ make migration:run
 
 **create-booksというマイグレーションファイルを作成**
 
-```
+```sh
 make migration-generate name=create-books
 ```
+
+マイグレーションを取り消したい場合は以下のコマンドを実行します。   
+
+```sh
+make migration-revert
+```
+
+※ 複数のマイグレーションを取り消したい場合は、複数回このコマンドを実行する必要があります。
 
 ## 初期データの投入
 
 以下のコマンドを実行後に、dbのパスワードを入力すると初期データの投入を行うことができます。
 
+- sqlDir: 初期データとして投入したいSQLファイルのディレクトリ（ファイル名も含めて指定）
+- name: .envにセットしたDBの名前
+
 ```sh
-make seeding name='sample_db'
+make seeding sqlDir=./sql/book-seed.sql name=sample_db
 ```
