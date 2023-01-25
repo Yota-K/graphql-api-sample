@@ -45,7 +45,7 @@ make setup
 
 
 ```sh
-make migration:run
+make migration-run
 ```
 
 新しいテーブルを作成した場合は、エンティティを追加した後に、Dockerコンテナの外で以下のコマンドを実行するとマイグレーションファイルが実行されます。
