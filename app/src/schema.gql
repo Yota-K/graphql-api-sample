@@ -29,8 +29,8 @@ type Mutation {
 }
 
 type Query {
-  findAll: [Book!]!
-  findOne(id: Int!): Book!
+  book(id: Int!): Book!
+  books: [Book!]!
 }
 
 input UpdateBookInput {
