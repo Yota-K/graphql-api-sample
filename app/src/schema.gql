@@ -17,6 +17,11 @@ input CreateBookInput {
   title: String!
 }
 
+input CreateUserInput {
+  email: String!
+  name: String!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -24,13 +29,18 @@ scalar DateTime
 
 type Mutation {
   createBook(createBookInput: CreateBookInput!): Book!
+  createUser(createUserInput: CreateUserInput!): User!
   removeBook(id: Int!): Book!
+  removeUser(id: Int!): User!
   updateBook(updateBookInput: UpdateBookInput!): Book!
+  updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 type Query {
   book(id: Int!): Book!
   books: [Book!]!
+  user(id: Int!): User!
+  users: [User!]!
 }
 
 input UpdateBookInput {
@@ -38,4 +48,18 @@ input UpdateBookInput {
   id: Int!
   price: Float
   title: String
+}
+
+input UpdateUserInput {
+  email: String
+  id: Int!
+  name: String
+}
+
+type User {
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
 }

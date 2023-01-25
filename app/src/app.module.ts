@@ -7,6 +7,7 @@ import { BooksModule } from './books/books.module';
 import { ORM_CONFIG } from './config/ormconfig';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { AppService } from './app.service';
       playground: true,
     }),
     BooksModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
