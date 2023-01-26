@@ -17,9 +17,9 @@ export class Book {
   @Field()
   title: string;
 
-  @Column({ type: 'varchar', length: 255 })
-  @Field()
-  author: string;
+  @Column({ unsigned: true })
+  @Field(() => ID)
+  userId: number;
 
   @Column({ type: 'int', unsigned: true })
   @Field()

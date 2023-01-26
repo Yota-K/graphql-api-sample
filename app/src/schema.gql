@@ -3,12 +3,12 @@
 # ------------------------------------------------------
 
 type Book {
-  author: String!
   createdAt: DateTime!
   id: ID!
   price: Float!
   title: String!
   updatedAt: DateTime!
+  userId: ID!
 }
 
 input CreateBookInput {
