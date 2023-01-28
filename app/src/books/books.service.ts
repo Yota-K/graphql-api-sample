@@ -23,8 +23,8 @@ export class BooksService {
 
   async findOne(id: number): Promise<Book> {
     return this.bookRepository.findOneOrFail({
-      where: { id },
       relations: ['user'],
+      where: { userId: id },
     });
   }
 
