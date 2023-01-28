@@ -13,9 +13,9 @@ type Book {
 }
 
 input CreateBookInput {
-  author: String!
   price: Float!
   title: String!
+  userId: ID!
 }
 
 input CreateUserInput {
@@ -45,10 +45,10 @@ type Query {
 }
 
 input UpdateBookInput {
-  author: String
   id: ID!
   price: Float
   title: String
+  userId: ID
 }
 
 input UpdateUserInput {
