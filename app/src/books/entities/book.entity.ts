@@ -4,7 +4,9 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  ManyToOne,
 } from 'typeorm';
+import { User } from '../../users/entities/user.entity';
 
 @ObjectType()
 @Entity('books')
@@ -32,4 +34,8 @@ export class Book {
   @CreateDateColumn()
   @Field()
   updatedAt: Date;
+
+  @ManyToOne(() => User, (user) => user.books)
+  @Field(() => User, { nullable: true })
+  user: User;
 }

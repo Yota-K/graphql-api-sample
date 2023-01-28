@@ -4,7 +4,9 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  OneToMany,
 } from 'typeorm';
+import { Book } from '../../books/entities/book.entity';
 
 @ObjectType()
 @Entity('users')
@@ -28,4 +30,8 @@ export class User {
   @CreateDateColumn()
   @Field()
   updatedAt: Date;
+
+  @OneToMany(() => Book, (book) => book.user)
+  @Field(() => [Book], { nullable: true })
+  books: Book[];
 }

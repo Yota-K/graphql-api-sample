@@ -18,11 +18,14 @@ export class BooksService {
   }
 
   async findAll(): Promise<Book[]> {
-    return this.bookRepository.find();
+    return this.bookRepository.find({ relations: ['user'] });
   }
 
   async findOne(id: number): Promise<Book> {
-    return this.bookRepository.findOneOrFail({ where: { id } });
+    return this.bookRepository.findOneOrFail({
+      where: { id },
+      relations: ['user'],
+    });
   }
 
   async update(id: number, updateBookInput: UpdateBookInput): Promise<Book> {

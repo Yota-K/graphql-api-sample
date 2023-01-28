@@ -18,11 +18,14 @@ export class UsersService {
   }
 
   async findAll(): Promise<User[]> {
-    return this.userRepository.find();
+    return this.userRepository.find({ relations: ['books'] });
   }
 
   async findOne(id: number): Promise<User> {
-    return this.userRepository.findOneOrFail({ where: { id } });
+    return this.userRepository.findOneOrFail({
+      where: { id },
+      relations: ['books'],
+    });
   }
 
   async update(id: number, updateUserInput: UpdateUserInput) {

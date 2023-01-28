@@ -8,6 +8,7 @@ type Book {
   price: Float!
   title: String!
   updatedAt: DateTime!
+  user: User
   userId: ID!
 }
 
@@ -57,6 +58,7 @@ input UpdateUserInput {
 }
 
 type User {
+  books: [Book!]
   createdAt: DateTime!
   email: String!
   id: ID!
