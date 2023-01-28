@@ -31,29 +31,29 @@ scalar DateTime
 type Mutation {
   createBook(createBookInput: CreateBookInput!): Book!
   createUser(createUserInput: CreateUserInput!): User!
-  removeBook(id: Int!): Book!
-  removeUser(id: Int!): User!
+  removeBook(id: ID!): Book!
+  removeUser(id: ID!): User!
   updateBook(updateBookInput: UpdateBookInput!): Book!
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 type Query {
-  book(id: Int!): Book!
+  book(id: ID!): Book!
   books: [Book!]!
-  user(id: Int!): User!
+  user(id: ID!): User!
   users: [User!]!
 }
 
 input UpdateBookInput {
   author: String
-  id: Int!
+  id: ID!
   price: Float
   title: String
 }
 
 input UpdateUserInput {
   email: String
-  id: Int!
+  id: ID!
   name: String
 }
 
