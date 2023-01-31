@@ -29,10 +29,16 @@ export class UsersService {
   }
 
   async update(id: number, updateUserInput: UpdateUserInput) {
-    const user = this.userRepository.findOneOrFail({ where: { id } });
+    const user = await this.userRepository.findOneOrFail({ where: { id } });
 
     if (user) {
-      return this.userRepository.save(updateUserInput);
+      const { email, name } = updateUserInput;
+      const updateUser = await this.userRepository.save({
+        email,
+        name,
+      });
+
+      return updateUser;
     }
   }
 

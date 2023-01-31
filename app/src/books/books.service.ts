@@ -32,7 +32,14 @@ export class BooksService {
     const book = this.bookRepository.findOneOrFail({ where: { id } });
 
     if (book) {
-      return this.bookRepository.save(updateBookInput);
+      const { price, title, userId } = updateBookInput;
+      const updateBook = await this.bookRepository.save({
+        price,
+        title,
+        userId,
+      });
+
+      return updateBook;
     }
   }
 
