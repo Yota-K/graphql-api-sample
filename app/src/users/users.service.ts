@@ -28,7 +28,7 @@ export class UsersService {
     });
   }
 
-  async update(id: number, updateUserInput: UpdateUserInput) {
+  async update(id: number, updateUserInput: UpdateUserInput): Promise<User> {
     const user = await this.userRepository.findOneOrFail({ where: { id } });
 
     if (user) {
