@@ -30,8 +30,11 @@
     "@nestjs/platform-express": "^9.0.0",
     "apollo-server-express": "^3.11.1",
     "graphql": "^16.6.0",
+    "graphql-subscriptions": "^2.0.0",
+    "graphql-ws": "^5.13.1",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "subscriptions-transport-ws": "^0.11.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",

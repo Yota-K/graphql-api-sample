@@ -1,8 +1,18 @@
-import { Resolver, Query, Mutation, Args, ID } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ID,
+  Subscription,
+} from '@nestjs/graphql';
+import { PubSub } from 'graphql-subscriptions';
 import { BooksService } from './books.service';
 import { Book } from './entities/book.entity';
 import { CreateBookInput } from './dto/create-book.input';
 import { UpdateBookInput } from './dto/update-book.input';
+
+export const pubsub = new PubSub();
 
 @Resolver(() => Book)
 export class BooksResolver {
@@ -10,7 +20,10 @@ export class BooksResolver {
 
   @Mutation(() => Book)
   createBook(@Args('createBookInput') createBookInput: CreateBookInput) {
-    return this.booksService.create(createBookInput);
+    const newBook = this.booksService.create(createBookInput);
+    // 本の情報がDBに登録された時にSubscriptionを使用してクライアントサイドで変更を検知できるようにしている
+    pubsub.publish('bookAdded', { bookAdded: newBook });
+    return newBook;
   }
 
   @Query(() => [Book], { name: 'books' })
@@ -31,5 +44,10 @@ export class BooksResolver {
   @Mutation(() => Book)
   removeBook(@Args('id', { type: () => ID }) id: number) {
     return this.booksService.remove(id);
+  }
+
+  @Subscription((returns) => Book)
+  bookAdded() {
+    return pubsub.asyncIterator('bookAdded');
   }
 }
